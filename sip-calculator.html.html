@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SIP Calculator - LoanMitraCalc</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+.result p {
+    font-size: 17px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📊 SIP Calculator</h1>
+
+<label>Monthly Investment (₹)</label>
+<input type="number" id="investment" placeholder="Example: 5000">
+
+<label>Expected Return (% per year)</label>
+<input type="number" id="rate" placeholder="Example: 12">
+
+<label>Investment Period (Years)</label>
+<input type="number" id="years" placeholder="Example: 10">
+
+<button onclick="calculateSIP()">Calculate SIP</button>
+
+<div class="result">
+
+<p>Total Investment: ₹ <span id="totalInvestment">0</span></p>
+
+<p>Estimated Returns: ₹ <span id="returns">0</span></p>
+
+<p>Future Value: ₹ <span id="futureValue">0</span></p>
+
+</div>
+
+<br>
+
+<a href="index.html">← Back to Home</a>
+
+</div>
+
+<script>
+
+function calculateSIP() {
+
+    let investment = parseFloat(document.getElementById("investment").value);
+    let rate = parseFloat(document.getElementById("rate").value);
+    let years = parseFloat(document.getElementById("years").value);
+
+    if (
+        isNaN(investment) ||
+        isNaN(rate) ||
+        isNaN(years) ||
+        investment <= 0 ||
+        rate < 0 ||
+        years <= 0
+    ) {
+        alert("Please enter valid values.");
+        return;
+    }
+
+    let months = years * 12;
+
+    let monthlyRate = rate / 12 / 100;
+
+    let futureValue;
+
+    if (monthlyRate === 0) {
+
+        futureValue = investment * months;
+
+    } else {
+
+        futureValue =
+            investment *
+            (
+                (Math.pow(1 + monthlyRate, months) - 1)
+                / monthlyRate
+            ) *
+            (1 + monthlyRate);
+    }
+
+    let totalInvestment = investment * months;
+
+    let estimatedReturns = futureValue - totalInvestment;
+
+    document.getElementById("totalInvestment").innerText =
+        totalInvestment.toLocaleString("en-IN", {
+            maximumFractionDigits: 2
+        });
+
+    document.getElementById("returns").innerText =
+        estimatedReturns.toLocaleString("en-IN", {
+            maximumFractionDigits: 2
+        });
+
+    document.getElementById("futureValue").innerText =
+        futureValue.toLocaleString("en-IN", {
+            maximumFractionDigits: 2
+        });
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage Calculator - LoanMitraCalc</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #0d47a1;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .calculator {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 25px;
+        }
+
+        .section {
+            border: 1px solid #ddd;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            color: #0d47a1;
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 18px;
+            padding: 14px;
+            border: none;
+            border-radius: 7px;
+            background: #0d47a1;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #08306b;
+        }
+
+        .result {
+            margin-top: 15px;
+            background: #eef4ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 21px;
+            font-weight: bold;
+            color: #0d47a1;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #0d47a1;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>LoanMitraCalc</h1>
+</header>
+
+<div class="container">
+
+    <div class="calculator">
+
+        <h2>Percentage Calculator</h2>
+
+        <!-- Percentage of a Number -->
+        <div class="section">
+
+            <h3>1. What is X% of Y?</h3>
+
+            <label>Percentage (%)</label>
+            <input type="number" id="percent1" placeholder="Example: 20">
+
+            <label>Number</label>
+            <input type="number" id="number1" placeholder="Example: 500">
+
+            <button onclick="calculatePercentOf()">
+                Calculate
+            </button>
+
+            <div class="result" id="result1">
+                Result: 0
+            </div>
+
+        </div>
+
+
+        <!-- Percentage Increase -->
+        <div class="section">
+
+            <h3>2. Percentage Increase / Decrease</h3>
+
+            <label>Original Value</label>
+            <input type="number" id="originalValue" placeholder="Example: 500">
+
+            <label>New Value</label>
+            <input type="number" id="newValue" placeholder="Example: 600">
+
+            <button onclick="calculateChange()">
+                Calculate Change
+            </button>
+
+            <div class="result" id="result2">
+                Result: 0%
+            </div>
+
+        </div>
+
+
+        <!-- Percentage Difference -->
+        <div class="section">
+
+            <h3>3. What Percentage is X of Y?</h3>
+
+            <label>Value X</label>
+            <input type="number" id="valueX" placeholder="Example: 50">
+
+            <label>Value Y</label>
+            <input type="number" id="valueY" placeholder="Example: 200">
+
+            <button onclick="calculateWhatPercent()">
+                Calculate Percentage
+            </button>
+
+            <div class="result" id="result3">
+                Result: 0%
+            </div>
+
+        </div>
+
+
+        <a class="back" href="index.html">← Back to Home</a>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 LoanMitraCalc. All Rights Reserved.
+</footer>
+
+
+<script>
+
+function calculatePercentOf() {
+
+    let percent = parseFloat(
+        document.getElementById("percent1").value
+    );
+
+    let number = parseFloat(
+        document.getElementById("number1").value
+    );
+
+    if (isNaN(percent) || isNaN(number)) {
+        alert("Please enter valid numbers.");
+        return;
+    }
+
+    let result = (percent / 100) * number;
+
+    document.getElementById("result1").innerText =
+        "Result: " + result.toLocaleString("en-IN", {
+            maximumFractionDigits: 2
+        });
+}
+
+
+function calculateChange() {
+
+    let original = parseFloat(
+        document.getElementById("originalValue").value
+    );
+
+    let newValue = parseFloat(
+        document.getElementById("newValue").value
+    );
+
+    if (
+        isNaN(original) ||
+        isNaN(newValue) ||
+        original === 0
+    ) {
+        alert("Please enter valid values.");
+        return;
+    }
+
+    let change = ((newValue - original) / original) * 100;
+
+    if (change > 0) {
+
+        document.getElementById("result2").innerText =
+            "Increase: " + change.toFixed(2) + "%";
+
+    } else if (change < 0) {
+
+        document.getElementById("result2").innerText =
+            "Decrease: " + Math.abs(change).toFixed(2) + "%";
+
+    } else {
+
+        document.getElementById("result2").innerText =
+            "No Change: 0%";
+    }
+}
+
+
+function calculateWhatPercent() {
+
+    let x = parseFloat(
+        document.getElementById("valueX").value
+    );
+
+    let y = parseFloat(
+        document.getElementById("valueY").value
+    );
+
+    if (isNaN(x) || isNaN(y) || y === 0) {
+        alert("Please enter valid values.");
+        return;
+    }
+
+    let result = (x / y) * 100;
+
+    document.getElementById("result3").innerText =
+        "Result: " + result.toFixed(2) + "%";
+}
+
+</script>
+
+</body>
+</html>

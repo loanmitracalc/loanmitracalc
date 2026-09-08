@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Personal Loan EMI Calculator - LoanMitraCalc</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+header {
+    background: #0f172a;
+    color: white;
+    padding: 18px 6%;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 600px;
+    margin: 35px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1 {
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #64748b;
+}
+
+.input-box {
+    margin-top: 18px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 22px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+.results {
+    margin-top: 25px;
+}
+
+.result {
+    background: #f1f5f9;
+    padding: 18px;
+    margin-top: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.result span:last-child {
+    font-weight: bold;
+}
+
+.back {
+    display: block;
+    margin-top: 25px;
+    text-align: center;
+    text-decoration: none;
+    color: #2563eb;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">LoanMitraCalc</div>
+</header>
+
+<div class="container">
+
+<h1>💰 Personal Loan EMI Calculator</h1>
+
+<p class="subtitle">
+Calculate your Personal Loan EMI easily
+</p>
+
+<div class="input-box">
+<label>Loan Amount (₹)</label>
+<input type="number" id="loanAmount" placeholder="Example: 500000">
+</div>
+
+<div class="input-box">
+<label>Interest Rate (% per year)</label>
+<input type="number" id="interestRate" placeholder="Example: 12" step="0.01">
+</div>
+
+<div class="input-box">
+<label>Loan Tenure (Years)</label>
+<input type="number" id="loanTenure" placeholder="Example: 5">
+</div>
+
+<button onclick="calculateEMI()">Calculate EMI</button>
+
+<div class="results">
+
+<div class="result">
+<span>Monthly EMI</span>
+<span id="emi">₹0</span>
+</div>
+
+<div class="result">
+<span>Total Interest</span>
+<span id="interest">₹0</span>
+</div>
+
+<div class="result">
+<span>Total Payment</span>
+<span id="payment">₹0</span>
+</div>
+
+</div>
+
+<a class="back" href="index.html">← Back to Home</a>
+
+</div>
+
+<script>
+
+function calculateEMI() {
+
+    let principal = parseFloat(
+        document.getElementById("loanAmount").value
+    );
+
+    let annualRate = parseFloat(
+        document.getElementById("interestRate").value
+    );
+
+    let years = parseFloat(
+        document.getElementById("loanTenure").value
+    );
+
+    if (
+        isNaN(principal) ||
+        isNaN(annualRate) ||
+        isNaN(years) ||
+        principal <= 0 ||
+        annualRate < 0 ||
+        years <= 0
+    ) {
+        alert("Please enter valid values.");
+        return;
+    }
+
+    let months = years * 12;
+    let monthlyRate = annualRate / 12 / 100;
+
+    let emi;
+
+    if (monthlyRate === 0) {
+        emi = principal / months;
+    } else {
+        emi =
+        principal *
+        monthlyRate *
+        Math.pow(1 + monthlyRate, months)
+        /
+        (Math.pow(1 + monthlyRate, months) - 1);
+    }
+
+    let totalPayment = emi * months;
+    let totalInterest = totalPayment - principal;
+
+    document.getElementById("emi").innerText =
+        "₹" + emi.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+    document.getElementById("interest").innerText =
+        "₹" + totalInterest.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+    document.getElementById("payment").innerText =
+        "₹" + totalPayment.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+}
+
+</script>
+
+</body>
+</html>

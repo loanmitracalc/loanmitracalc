@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Age Calculator - LoanMitraCalc</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #222;
+        }
+
+        header {
+            background: #0d47a1;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .calculator {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 7px;
+            background: #0d47a1;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #08306b;
+        }
+
+        .results {
+            margin-top: 25px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .result-box {
+            background: #eef4ff;
+            padding: 18px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .result-box h3 {
+            margin: 0 0 8px;
+            color: #0d47a1;
+        }
+
+        .result-box p {
+            margin: 0;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #0d47a1;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>LoanMitraCalc</h1>
+</header>
+
+<div class="container">
+
+    <div class="calculator">
+
+        <h2>Age Calculator</h2>
+
+        <label>Date of Birth</label>
+        <input type="date" id="dob">
+
+        <button onclick="calculateAge()">
+            Calculate Age
+        </button>
+
+        <div class="results">
+
+            <div class="result-box">
+                <h3>Your Age</h3>
+                <p id="age">0 Years, 0 Months, 0 Days</p>
+            </div>
+
+            <div class="result-box">
+                <h3>Total Days</h3>
+                <p id="totalDays">0 Days</p>
+            </div>
+
+        </div>
+
+        <a class="back" href="index.html">← Back to Home</a>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 LoanMitraCalc. All Rights Reserved.
+</footer>
+
+<script>
+
+function calculateAge() {
+
+    let dobValue = document.getElementById("dob").value;
+
+    if (!dobValue) {
+        alert("Please select your date of birth.");
+        return;
+    }
+
+    let dob = new Date(dobValue + "T00:00:00");
+    let today = new Date();
+
+    if (dob > today) {
+        alert("Date of birth cannot be in the future.");
+        return;
+    }
+
+    let years = today.getFullYear() - dob.getFullYear();
+    let months = today.getMonth() - dob.getMonth();
+    let days = today.getDate() - dob.getDate();
+
+    if (days < 0) {
+
+        months--;
+
+        let previousMonth = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            0
+        );
+
+        days += previousMonth.getDate();
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    let difference = today.getTime() - dob.getTime();
+
+    let totalDays = Math.floor(
+        difference / (1000 * 60 * 60 * 24)
+    );
+
+    document.getElementById("age").innerText =
+        years + " Years, " +
+        months + " Months, " +
+        days + " Days";
+
+    document.getElementById("totalDays").innerText =
+        totalDays.toLocaleString("en-IN") + " Days";
+}
+
+</script>
+
+</body>
+</html>
