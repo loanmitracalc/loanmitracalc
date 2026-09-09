@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Car Loan EMI Calculator - LoanMitraCalc</title>
 
-    <meta name="description" content="Calculate Car Loan EMI, total interest and total repayment amount easily with LoanMitraCalc's free Car Loan EMI Calculator.">
+    <meta name="description" content="Calculate Car Loan EMI, total interest, interest per year, month and day, and total repayment amount with LoanMitraCalc's free Car Loan EMI Calculator.">
 
     <meta name="keywords" content="car loan calculator, car loan EMI calculator, auto loan calculator, EMI calculator, car loan interest calculator">
 
     <meta name="robots" content="index, follow">
 
     <link rel="canonical" href="https://loanmitracalc.github.io/loanmitracalc/car-loan.html">
+
+    <!-- PDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
         * {
@@ -112,6 +116,15 @@
             font-weight: bold;
         }
 
+        #pdfButton {
+            display: none;
+            background: #198754;
+        }
+
+        #pdfButton:hover {
+            background: #146c43;
+        }
+
         .back {
             display: block;
             text-align: center;
@@ -119,6 +132,19 @@
             color: #0d47a1;
             text-decoration: none;
             font-weight: bold;
+        }
+
+        .seo-content {
+            margin-top: 35px;
+        }
+
+        .seo-content h2 {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .seo-content p {
+            line-height: 1.7;
         }
 
         footer {
@@ -151,7 +177,9 @@
         <label>Loan Tenure (Years)</label>
         <input type="number" id="loanTenure" placeholder="Example: 5">
 
-        <button onclick="calculateEMI()">Calculate EMI</button>
+        <button type="button" onclick="calculateEMI()">
+            Calculate EMI
+        </button>
 
         <div class="results">
 
@@ -166,13 +194,30 @@
             </div>
 
             <div class="result-box">
+                <h3>Interest per Year</h3>
+                <p id="interestYear">₹0.00</p>
+            </div>
+
+            <div class="result-box">
+                <h3>Interest per Month</h3>
+                <p id="interestMonth">₹0.00</p>
+            </div>
+
+            <div class="result-box">
+                <h3>Interest per Day</h3>
+                <p id="interestDay">₹0.00</p>
+            </div>
+
+            <div class="result-box">
                 <h3>Total Payment</h3>
                 <p id="totalPayment">₹0.00</p>
             </div>
 
         </div>
 
-        <a class="back" href="index.html">← Back to Home</a>
+        <button type="button" id="pdfButton" onclick="downloadPDF()">
+            📄 Download Calculation
+        </button>
 
 <section class="seo-content">
 
@@ -180,8 +225,9 @@
 
 <p>
 Our Car Loan EMI Calculator helps you estimate your monthly car loan EMI,
-total interest and total repayment amount. Enter the loan amount, interest
-rate and loan tenure to calculate your estimated EMI quickly.
+total interest, interest breakdown and total repayment amount. Enter the
+loan amount, interest rate and loan tenure to calculate your estimated EMI
+quickly.
 </p>
 
 <h2>How Does a Car Loan EMI Calculator Work?</h2>
@@ -221,6 +267,8 @@ may vary depending on the lender and loan terms.
 
 </section>
 
+        <a class="back" href="index.html">← Back to Home</a>
+
     </div>
 
 </div>
@@ -231,11 +279,25 @@ may vary depending on the lender and loan terms.
 
 <script>
 
+let calculationData = {};
+
+function formatINR(amount) {
+    return "₹" + amount.toLocaleString("en-IN", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
 function calculateEMI() {
 
-    let principal = parseFloat(document.getElementById("loanAmount").value);
-    let annualRate = parseFloat(document.getElementById("interestRate").value);
-    let years = parseFloat(document.getElementById("loanTenure").value);
+    let principal =
+        parseFloat(document.getElementById("loanAmount").value);
+
+    let annualRate =
+        parseFloat(document.getElementById("interestRate").value);
+
+    let years =
+        parseFloat(document.getElementById("loanTenure").value);
 
     if (
         isNaN(principal) ||
@@ -250,40 +312,236 @@ function calculateEMI() {
     }
 
     let months = years * 12;
+
     let monthlyRate = annualRate / 12 / 100;
 
     let emi;
 
     if (monthlyRate === 0) {
+
         emi = principal / months;
+
     } else {
+
         emi =
             principal *
             monthlyRate *
             Math.pow(1 + monthlyRate, months) /
             (Math.pow(1 + monthlyRate, months) - 1);
+
     }
 
     let totalPayment = emi * months;
+
     let totalInterest = totalPayment - principal;
 
+    let interestYear = totalInterest / years;
+
+    let interestMonth = totalInterest / months;
+
+    let interestDay = totalInterest / (years * 365);
+
     document.getElementById("emi").innerText =
-        "₹" + emi.toLocaleString("en-IN", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
+        formatINR(emi);
 
     document.getElementById("totalInterest").innerText =
-        "₹" + totalInterest.toLocaleString("en-IN", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
+        formatINR(totalInterest);
+
+    document.getElementById("interestYear").innerText =
+        formatINR(interestYear);
+
+    document.getElementById("interestMonth").innerText =
+        formatINR(interestMonth);
+
+    document.getElementById("interestDay").innerText =
+        formatINR(interestDay);
 
     document.getElementById("totalPayment").innerText =
-        "₹" + totalPayment.toLocaleString("en-IN", {
+        formatINR(totalPayment);
+
+    calculationData = {
+        principal: principal,
+        annualRate: annualRate,
+        years: years,
+        months: months,
+        emi: emi,
+        totalInterest: totalInterest,
+        interestYear: interestYear,
+        interestMonth: interestMonth,
+        interestDay: interestDay,
+        totalPayment: totalPayment
+    };
+
+    document.getElementById("pdfButton").style.display = "block";
+}
+
+function downloadPDF() {
+
+    if (!calculationData.principal) {
+        alert("Please calculate your loan first.");
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    const data = calculationData;
+
+    const today = new Date();
+
+    const reportDate =
+        today.toLocaleDateString("en-IN");
+
+    doc.setFontSize(22);
+    doc.text("LoanMitraCalc", 20, 20);
+
+    doc.setFontSize(16);
+    doc.text("Car Loan Calculation Report", 20, 32);
+
+    doc.setFontSize(11);
+    doc.text("Report Date: " + reportDate, 20, 42);
+
+    doc.line(20, 47, 190, 47);
+
+    doc.setFontSize(14);
+    doc.text("Loan Details", 20, 60);
+
+    doc.setFontSize(11);
+
+    doc.text(
+        "Car Loan Amount: Rs. " +
+        data.principal.toLocaleString("en-IN"),
+        20,
+        70
+    );
+
+    doc.text(
+        "Interest Rate: " +
+        data.annualRate.toFixed(2) +
+        "% per year",
+        20,
+        80
+    );
+
+    doc.text(
+        "Loan Tenure: " +
+        data.years +
+        " Years",
+        20,
+        90
+    );
+
+    doc.line(20, 97, 190, 97);
+
+    doc.setFontSize(14);
+    doc.text("Repayment Summary", 20, 110);
+
+    doc.setFontSize(11);
+
+    doc.text(
+        "Monthly EMI: Rs. " +
+        data.emi.toLocaleString("en-IN", {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
-        });
+        }),
+        20,
+        120
+    );
+
+    doc.text(
+        "Total Payment: Rs. " +
+        data.totalPayment.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }),
+        20,
+        130
+    );
+
+    doc.text(
+        "Total Interest: Rs. " +
+        data.totalInterest.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }),
+        20,
+        140
+    );
+
+    doc.line(20, 147, 190, 147);
+
+    doc.setFontSize(14);
+    doc.text("Interest Breakdown", 20, 160);
+
+    doc.setFontSize(11);
+
+    doc.text(
+        "Interest per Year: Rs. " +
+        data.interestYear.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }),
+        20,
+        170
+    );
+
+    doc.text(
+        "Interest per Month: Rs. " +
+        data.interestMonth.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }),
+        20,
+        180
+    );
+
+    doc.text(
+        "Interest per Day: Rs. " +
+        data.interestDay.toLocaleString("en-IN", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }),
+        20,
+        190
+    );
+
+    doc.line(20, 197, 190, 197);
+
+    doc.setFontSize(12);
+    doc.text("Important Note", 20, 210);
+
+    doc.setFontSize(10);
+
+    doc.text(
+        "This report is an estimate for informational purposes only.",
+        20,
+        220
+    );
+
+    doc.text(
+        "Actual loan terms, fees and interest may vary by lender.",
+        20,
+        228
+    );
+
+    doc.line(20, 240, 190, 240);
+
+    doc.setFontSize(9);
+
+    doc.text(
+        "Generated by LoanMitraCalc",
+        20,
+        250
+    );
+
+    doc.text(
+        "loanmitracalc.github.io/loanmitracalc/",
+        20,
+        257
+    );
+
+    doc.save("LoanMitraCalc-Car-Loan-Report.pdf");
 }
 
 </script>
