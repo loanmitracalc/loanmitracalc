@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>LoanMitraCalc - Free Loan & EMI Calculators</title>
 
@@ -8,19 +12,27 @@
 
 <meta name="keywords" content="loan calculator, EMI calculator, personal loan EMI, home loan EMI, car loan EMI, SIP calculator, GST calculator, percentage calculator, age calculator, bevel protractor calculator">
 
-<meta name="robots" content="index, follow"> <meta name="author" content="LoanMitraCalc">
+<meta name="robots" content="index, follow">
+
+<meta name="author" content="LoanMitraCalc">
 
 <link rel="canonical" href="https://loanmitracalc.github.io/">
 
-<!-- GOOGLE ADSENSE -->
+<!-- ================================================= -->
+
+<!-- GOOGLE ADSENSE - SITE VERIFICATION -->
+
+<!-- ================================================= -->
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4108651021636454" crossorigin="anonymous"></script>
 
-<!-- GOOGLE ADSENSE VERIFICATION -->
-
 <meta name="google-adsense-account" content="ca-pub-4108651021636454">
 
+<!-- ================================================= -->
+
 <!-- PDF LIBRARY -->
+
+<!-- ================================================= -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
@@ -32,15 +44,25 @@
 
 <header>
 
-<div class="logo">LoanMitraCalc</div>
+<div class="logo"> LoanMitraCalc </div>
 
-<nav> <a href="index.html">Home</a> <a href="#calculators">Calculators</a> <a href="#about">About</a> <a href="#contact">Contact</a> </nav>
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="#calculators"> Calculators </a>
+
+<a href="#about"> About </a>
+
+<a href="#contact"> Contact </a>
+
+</nav>
 
 </header>
 
 <section class="hero">
 
-<h1>Free Loan & EMI Calculators</h1>
+<h1> Free Loan & EMI Calculators </h1>
 
 <p> Calculate your monthly EMI, total interest and total payment easily. </p>
 
@@ -48,11 +70,11 @@
 
 <section class="calculator">
 
-<h2>EMI Calculator</h2>
+<h2> EMI Calculator </h2>
 
 <div class="input-box">
 
-<label for="loanAmount">Loan Amount (₹)</label>
+<label for="loanAmount"> Loan Amount (₹) </label>
 
 <input type="number" id="loanAmount" placeholder="Example: 500000" min="1">
 
@@ -60,19 +82,19 @@
 
 <div class="input-box">
 
-<label for="interestRate">Interest Rate (% per year)</label>
+<label for="interestRate"> Interest Rate (% per year) </label>
 
 <input type="number" id="interestRate" placeholder="Example: 10" step="0.01" min="0">
 
 </div>
 
-<h3>Loan Tenure</h3>
+<h3> Loan Tenure </h3>
 
 <div class="tenure-grid">
 
 <div class="input-box">
 
-<label for="loanYears">Years</label>
+<label for="loanYears"> Years </label>
 
 <input type="number" id="loanYears" placeholder="Example: 1" min="0">
 
@@ -80,7 +102,7 @@
 
 <div class="input-box">
 
-<label for="loanMonths">Months</label>
+<label for="loanMonths"> Months </label>
 
 <input type="number" id="loanMonths" placeholder="Example: 0" min="0">
 
@@ -88,7 +110,7 @@
 
 <div class="input-box">
 
-<label for="loanDays">Days</label>
+<label for="loanDays"> Days </label>
 
 <input type="number" id="loanDays" placeholder="Example: 0" min="0">
 
@@ -96,31 +118,35 @@
 
 </div>
 
-<button class="calculate-btn" onclick="calculateEMI()"> Calculate EMI </button>
+<button class="calculate-btn" onclick="calculateEMI()">
+
+Calculate EMI
+
+</button>
 
 <div class="results">
 
 <div class="result-card">
 
-<h3>Monthly EMI</h3>
+<h3> Monthly EMI </h3>
 
-<p id="emi">₹0.00</p>
-
-</div>
-
-<div class="result-card">
-
-<h3>Total Interest</h3>
-
-<p id="totalInterest">₹0.00</p>
+<p id="emi"> ₹0.00 </p>
 
 </div>
 
 <div class="result-card">
 
-<h3>Total Payment</h3>
+<h3> Total Interest </h3>
 
-<p id="totalPayment">₹0.00</p>
+<p id="totalInterest"> ₹0.00 </p>
+
+</div>
+
+<div class="result-card">
+
+<h3> Total Payment </h3>
+
+<p id="totalPayment"> ₹0.00 </p>
 
 </div>
 
@@ -128,7 +154,7 @@
 
 <div class="tenure-results">
 
-<h3>Loan Tenure Conversion</h3>
+<h3> Loan Tenure Conversion </h3>
 
 <div class="tenure-grid">
 
@@ -136,7 +162,7 @@
 
 Years
 
-<strong id="yearResult">0</strong>
+<strong id="yearResult"> 0 </strong>
 
 </div>
 
@@ -144,7 +170,7 @@ Years
 
 Months
 
-<strong id="monthResult">0</strong>
+<strong id="monthResult"> 0 </strong>
 
 </div>
 
@@ -152,7 +178,7 @@ Months
 
 Days
 
-<strong id="dayResult">0</strong>
+<strong id="dayResult"> 0 </strong>
 
 </div>
 
@@ -172,15 +198,15 @@ Days
 
 <section class="tools" id="calculators">
 
-<h2>Popular Loan & Financial Calculators</h2>
+<h2> Popular Loan & Financial Calculators </h2>
 
 <div class="cards">
 
 <div class="card">
 
-<h3>Personal Loan</h3>
+<h3> Personal Loan </h3>
 
-<p>Calculate Personal Loan EMI easily.</p>
+<p> Calculate Personal Loan EMI easily. </p>
 
 <a href="personal-loan.html"> Calculate Now </a>
 
@@ -188,9 +214,9 @@ Days
 
 <div class="card">
 
-<h3>Home Loan</h3>
+<h3> Home Loan </h3>
 
-<p>Calculate your Home Loan EMI.</p>
+<p> Calculate your Home Loan EMI. </p>
 
 <a href="home-loan.html"> Calculate Now </a>
 
@@ -198,9 +224,9 @@ Days
 
 <div class="card">
 
-<h3>Car Loan</h3>
+<h3> Car Loan </h3>
 
-<p>Calculate Car Loan monthly EMI.</p>
+<p> Calculate Car Loan monthly EMI. </p>
 
 <a href="car-loan.html"> Calculate Now </a>
 
@@ -208,9 +234,9 @@ Days
 
 <div class="card">
 
-<h3>SIP Calculator</h3>
+<h3> SIP Calculator </h3>
 
-<p>Calculate SIP investment and future value.</p>
+<p> Calculate SIP investment and future value. </p>
 
 <a href="sip-calculator.html"> Calculate Now </a>
 
@@ -218,9 +244,9 @@ Days
 
 <div class="card">
 
-<h3>GST Calculator</h3>
+<h3> GST Calculator </h3>
 
-<p>Calculate GST amount and final price easily.</p>
+<p> Calculate GST amount and final price easily. </p>
 
 <a href="gst-calculator.html"> Open Calculator </a>
 
@@ -228,9 +254,9 @@ Days
 
 <div class="card">
 
-<h3>Percentage Calculator</h3>
+<h3> Percentage Calculator </h3>
 
-<p>Calculate percentage, increase and decrease.</p>
+<p> Calculate percentage, increase and decrease. </p>
 
 <a href="percentage-calculator.html"> Open Calculator </a>
 
@@ -238,9 +264,9 @@ Days
 
 <div class="card">
 
-<h3>Age Calculator</h3>
+<h3> Age Calculator </h3>
 
-<p>Calculate your exact age in years, months and days.</p>
+<p> Calculate your exact age in years, months and days. </p>
 
 <a href="age-calculator.html"> Open Calculator </a>
 
@@ -248,9 +274,9 @@ Days
 
 <div class="card">
 
-<h3>Bevel Protractor</h3>
+<h3> Bevel Protractor </h3>
 
-<p>Calculate bevel protractor angles from 0° to 360°.</p>
+<p> Calculate bevel protractor angles from 0° to 360°. </p>
 
 <a href="bevel-protractor-calculator.html"> Open Calculator </a>
 
@@ -262,11 +288,11 @@ Days
 
 <section class="info" id="about">
 
-<h2>About LoanMitraCalc</h2>
+<h2> About LoanMitraCalc </h2>
 
 <p> LoanMitraCalc is a simple online financial calculator website designed to help users calculate loan EMI, total interest, total payment, SIP investment returns, GST, percentage and age quickly. </p>
 
-<h2>How EMI Calculator Works</h2>
+<h2> How EMI Calculator Works </h2>
 
 <p> Enter your loan amount, annual interest rate and loan tenure. Click the Calculate EMI button to see your monthly EMI, total interest and total payment. </p>
 
@@ -276,45 +302,45 @@ Days
 
 <section class="seo-content">
 
-<h2>Free Online Loan & Financial Calculators</h2>
+<h2> Free Online Loan & Financial Calculators </h2>
 
 <p> LoanMitraCalc provides free online calculators to help you estimate loan EMIs, investment returns, taxes, percentages and age. You can use these calculators from your mobile, tablet or computer without installing any software. </p>
 
-<h2>Loan Calculators</h2>
+<h2> Loan Calculators </h2>
 
 <p> Use our Personal Loan, Home Loan and Car Loan EMI Calculators to estimate your monthly EMI, total interest and total repayment amount. Enter the loan amount, interest rate and tenure to get an estimated result. </p>
 
-<h2>Investment Calculator</h2>
+<h2> Investment Calculator </h2>
 
 <p> Our SIP Calculator helps you estimate potential investment growth based on your monthly investment, expected annual return and investment period. Actual investment returns may vary depending on market performance. </p>
 
-<h2>GST and Percentage Calculators</h2>
+<h2> GST and Percentage Calculators </h2>
 
 <p> Use the GST Calculator to estimate GST amounts and tax-inclusive prices. The Percentage Calculator can be used for common percentage calculations, including percentage increase and decrease. </p>
 
-<h2>Age Calculator</h2>
+<h2> Age Calculator </h2>
 
 <p> Our Age Calculator helps you calculate your age in years, months and days using your date of birth and the selected date. </p>
 
-<h2>Bevel Protractor Calculator</h2>
+<h2> Bevel Protractor Calculator </h2>
 
 <p> The Bevel Protractor Calculator helps calculate angle readings using degrees and minutes. </p>
 
-<h2>Why Use LoanMitraCalc?</h2>
+<h2> Why Use LoanMitraCalc? </h2>
 
 <p> LoanMitraCalc is designed to provide simple, fast and easy-to-use financial calculators. The calculators are available online and can be used whenever you need a quick estimate. </p>
 
-<h2>Frequently Asked Questions</h2>
+<h2> Frequently Asked Questions </h2>
 
-<h3>Are LoanMitraCalc calculators free?</h3>
+<h3> Are LoanMitraCalc calculators free? </h3>
 
 <p> Yes. LoanMitraCalc calculators are available to use online for free. </p>
 
-<h3>Are calculator results accurate?</h3>
+<h3> Are calculator results accurate? </h3>
 
 <p> The results are estimates based on the information entered by the user. Actual loan rates, fees, investment returns and taxes may vary. </p>
 
-<h3>Can I use these calculators on mobile?</h3>
+<h3> Can I use these calculators on mobile? </h3>
 
 <p> Yes. LoanMitraCalc calculators are designed to work on mobile phones, tablets and computers. </p>
 
@@ -322,7 +348,7 @@ Days
 
 <section class="info" id="contact">
 
-<h2>Contact Us</h2>
+<h2> Contact Us </h2>
 
 <p> If you have any questions, suggestions or feedback about LoanMitraCalc, you can contact us. </p>
 
@@ -338,15 +364,15 @@ Days
 
 <p>
 
-<a href="index.html">Home</a> |
+<a href="index.html"> Home </a> |
 
-<a href="privacy-policy.html">Privacy Policy</a> |
+<a href="privacy-policy.html"> Privacy Policy </a> |
 
-<a href="disclaimer.html">Disclaimer</a> |
+<a href="disclaimer.html"> Disclaimer </a> |
 
-<a href="terms-conditions.html">Terms & Conditions</a> |
+<a href="terms-conditions.html"> Terms & Conditions </a> |
 
-<a href="#contact">Contact</a>
+<a href="#contact"> Contact </a>
 
 </p>
 
@@ -354,6 +380,8 @@ Days
 
 </footer>
 
-<script> let lastCalculation = null; function formatRupee(value) { return "₹" + value.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); } function calculateEMI() { const principal = parseFloat(document.getElementById("loanAmount").value); const annualRate = parseFloat(document.getElementById("interestRate").value); let years = parseInt(document.getElementById("loanYears").value) || 0; let months = parseInt(document.getElementById("loanMonths").value) || 0; let days = parseInt(document.getElementById("loanDays").value) || 0; if ( isNaN(principal) || isNaN(annualRate) || principal <= 0 || annualRate < 0 ) { alert("Please enter valid Loan Amount and Interest Rate."); return; } if ( years < 0 || months < 0 || days < 0 ) { alert("Please enter valid tenure values."); return; } if (days >= 30) { months += Math.floor(days / 30); days = days % 30; } if (months >= 12) { years += Math.floor(months / 12); months = months % 12; } if ( years === 0 && months === 0 && days === 0 ) { alert("Please enter Loan Tenure."); return; } const totalMonths = (years * 12) + months + (days / 30); const monthlyRate = annualRate / 12 / 100; let emi; if (monthlyRate === 0) { emi = principal / totalMonths; } else { emi = principal * monthlyRate * Math.pow(1 + monthlyRate, totalMonths) / ( Math.pow(1 + monthlyRate, totalMonths) - 1 ); } const totalPayment = emi * totalMonths; const totalInterest = totalPayment - principal; document.getElementById("emi").innerText = formatRupee(emi); document.getElementById("totalInterest").innerText = formatRupee(totalInterest); document.getElementById("totalPayment").innerText = formatRupee(totalPayment); let yearDisplay; if ( months === 0 && days === 0 ) { yearDisplay = years; } else { yearDisplay = ( years + months / 12 + days / 365 ).toFixed(2); } const monthDisplay = ( years * 12 + months + days / 30 ).toFixed(2); const dayDisplay = ( years * 365 + months * 30 + days ).toFixed(0); document.getElementById("yearResult").innerText = yearDisplay; document.getElementById("monthResult").innerText = monthDisplay; document.getElementById("dayResult").innerText = dayDisplay; lastCalculation = { principal, annualRate, years, months, days, emi, totalInterest, totalPayment, yearDisplay, monthDisplay, dayDisplay }; document.getElementById("downloadBtn").style.display = "block"; } function downloadResult() { if (!lastCalculation) { alert("Please calculate EMI first."); return; } if (typeof window.jspdf === "undefined") { alert( "PDF library is not loaded. Please check your internet connection and try again." ); return; } const { jsPDF } = window.jspdf; const data = lastCalculation; const doc = new jsPDF(); doc.setFontSize(20); doc.text( "LoanMitraCalc", 20, 20 ); doc.setFontSize(14); doc.text( "EMI Calculator Result", 20, 30 ); doc.line( 20, 35, 190, 35 ); doc.setFontSize(12); doc.text( "LOAN DETAILS", 20, 48 ); doc.text( "Loan Amount: Rs. " + data.principal.toLocaleString("en-IN"), 20, 58 ); doc.text( "Interest Rate: " + data.annualRate + "% per year", 20, 68 ); doc.text( "LOAN TENURE", 20, 84 ); doc.text( "Years: " + data.yearDisplay + " Year", 20, 94 ); doc.text( "Months: " + data.monthDisplay + " Months", 20, 104 ); doc.text( "Days: " + data.dayDisplay + " Days", 20, 114 ); doc.text( "EMI RESULT", 20, 132 ); doc.text( "Monthly EMI: Rs. " + data.emi.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }), 20, 142 ); doc.text( "Total Interest: Rs. " + data.totalInterest.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }), 20, 152 ); doc.text( "Total Payment: Rs. " + data.totalPayment.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }), 20, 162 ); doc.text( "CONVERSION", 20, 180 ); doc.text( "1 Year = 12 Months", 20, 190 ); doc.text( "1 Year = 365 Days", 20, 200 ); doc.text( "1 Month = approximately 30 Days", 20, 210 ); doc.setFontSize(10); doc.text( "Note: This calculation is an estimate for informational purposes.", 20, 230 ); doc.text( "Actual loan EMI, interest, fees and repayment may vary", 20, 238 ); doc.text( "depending on the lender and loan terms.", 20, 246 ); doc.setFontSize(9); doc.text( "LoanMitraCalc - https://loanmitracalc.github.io/", 20, 275 ); doc.save( "LoanMitraCalc-EMI-Result.pdf" ); } </script>
+<script> let lastCalculation = null; function formatRupee(value) { return "₹" + value.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); } function calculateEMI() { const principal = parseFloat( document.getElementById("loanAmount").value ); const annualRate = parseFloat( document.getElementById("interestRate").value ); let years = parseInt( document.getElementById("loanYears").value ) || 0; let months = parseInt( document.getElementById("loanMonths").value ) || 0; let days = parseInt( document.getElementById("loanDays").value ) || 0; if ( isNaN(principal) || isNaN(annualRate) || principal <= 0 || annualRate < 0 ) { alert( "Please enter valid Loan Amount and Interest Rate." ); return; } if ( years < 0 || months < 0 || days < 0 ) { alert( "Please enter valid tenure values." ); return; } if (days >= 30) { months += Math.floor(days / 30); days = days % 30; } if (months >= 12) { years += Math.floor(months / 12); months = months % 12; } if ( years === 0 && months === 0 && days === 0 ) { alert( "Please enter Loan Tenure." ); return; } const totalMonths = (years * 12) + months + (days / 30); const monthlyRate = annualRate / 12 / 100; let emi; if (monthlyRate === 0) { emi = principal / totalMonths; } else { emi = principal * monthlyRate * Math.pow( 1 + monthlyRate, totalMonths ) / ( Math.pow( 1 + monthlyRate, totalMonths ) - 1 ); } const totalPayment = emi * totalMonths; const totalInterest = totalPayment - principal; document.getElementById("emi").innerText = formatRupee(emi); document.getElementById("totalInterest").innerText = formatRupee(totalInterest); document.getElementById("totalPayment").innerText = formatRupee(totalPayment); let yearDisplay; if ( months === 0 && days === 0 ) { yearDisplay = years; } else { yearDisplay = ( years + months / 12 + days / 365 ).toFixed(2); } const monthDisplay = ( years * 12 + months + days / 30 ).toFixed(2); const dayDisplay = ( years * 365 + months * 30 + days ).toFixed(0); document.getElementById("yearResult").innerText = yearDisplay; document.getElementById("monthResult").innerText = monthDisplay; document.getElementById("dayResult").innerText = dayDisplay; lastCalculation = { principal, annualRate, years, months, days, emi, totalInterest, totalPayment, yearDisplay, monthDisplay, dayDisplay }; document.getElementById("downloadBtn").style.display = "block"; } function downloadResult() { if (!lastCalculation) { alert( "Please calculate EMI first." ); return; } if ( typeof window.jspdf === "undefined" ) { alert( "PDF library is not loaded. Please check your internet connection and try again." ); return; } const { jsPDF } = window.jspdf; const data = lastCalculation; const doc = new jsPDF(); doc.setFontSize(20); doc.text( "LoanMitraCalc", 20, 20 ); doc.setFontSize(14); doc.text( "EMI Calculator Result", 20, 30 ); doc.line( 20, 35, 190, 35 ); doc.setFontSize(12); doc.text( "LOAN DETAILS", 20, 48 ); doc.text( "Loan Amount: Rs. " + data.principal.toLocaleString("en-IN"), 20, 58 ); doc.text( "Interest Rate: " + data.annualRate + "% per year", 20, 68 ); doc.text( "LOAN TENURE", 20, 84 ); doc.text( "Years: " + data.yearDisplay + " Year", 20, 94 ); doc.text( "Months: " + data.monthDisplay + " Months", 20, 104 ); doc.text( "Days: " + data.dayDisplay + " Days", 20, 114 ); doc.text( "EMI RESULT", 20, 132 ); doc.text( "Monthly EMI: Rs. " + data.emi.toLocaleString( "en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 } ), 20, 142 ); doc.text( "Total Interest: Rs. " + data.totalInterest.toLocaleString( "en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 } ), 20, 152 ); doc.text( "Total Payment: Rs. " + data.totalPayment.toLocaleString( "en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 } ), 20, 162 ); doc.text( "CONVERSION", 20, 180 ); doc.text( "1 Year = 12 Months", 20, 190 ); doc.text( "1 Year = 365 Days", 20, 200 ); doc.text( "1 Month = approximately 30 Days", 20, 210 ); doc.setFontSize(10); doc.text( "Note: This calculation is an estimate for informational purposes.", 20, 230 ); doc.text( "Actual loan EMI, interest, fees and repayment may vary", 20, 238 ); doc.text( "depending on the lender and loan terms.", 20, 246 ); doc.setFontSize(9); doc.text( "LoanMitraCalc - https://loanmitracalc.github.io/", 20, 275 ); doc.save( "LoanMitraCalc-EMI-Result.pdf" ); } </script>
 
-</body> </html>
+</body>
+
+</html>
